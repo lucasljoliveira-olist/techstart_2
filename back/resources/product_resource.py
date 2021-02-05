@@ -24,7 +24,7 @@ class ProductResource(BaseResource):
 
     @marshal_with(field_base)
     def post(self):
-        return super().prost()
+        return super().post()
 
     @marshal_with(field_base)
     def put(self, id_: int):

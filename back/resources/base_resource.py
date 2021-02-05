@@ -11,7 +11,10 @@ class BaseResource(Resource):
 
     def get(self, id_: int = None):
         if id_:
-            return self.__dao.read_by_id(id_), 200
+            result = self.__dao.read_by_id(id_)
+            if result:
+                return result, 200
+            return None, 404
         return self.__dao.read_all(), 200
 
     def post(self):
