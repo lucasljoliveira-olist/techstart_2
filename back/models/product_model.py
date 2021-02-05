@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Float, String
 from sqlalchemy.orm import validates
 from back.models.base_model import BaseModel
-from back.utils.validators import validate_type, validate_not_empty, validate_lenght, validate_greater_than_zero
+from back.utils.validators import validate_type, validate_not_empty, validate_lenght, validate_greater_than
 
 
 class Product(BaseModel):
@@ -21,7 +21,7 @@ class Product(BaseModel):
     def validate_name(self, key, name):
         validate_type(name, str, key)
         validate_not_empty(name, key)
-        validate_lenght(description, 100, key)
+        validate_lenght(name, 100, key)
         return name
 
     @validates('description')
@@ -35,11 +35,11 @@ class Product(BaseModel):
     @validates('price')
     def validate_price(self, key, price):
         validate_type(price, float, key)
-        validate_greater_than_zero(bet_value, key)
+        validate_greater_than(price, key, 1)
         return price
 
     @validates('amount')
     def validate_amount(self, key, amount):
         validate_type(amount, int, key)
-        validate_greater_than_zero(bet_value, key)
+        validate_greater_than(amount, key, 0)
         return amount

@@ -2,13 +2,13 @@ from typing import Type
 
 
 def validate_type(value: object, type: Type, key: str):
-    if not isinstance(name, str):
+    if not isinstance(value, type):
             raise TypeError(f"{key.capitalize()} must be {type}.")
 
 
-def validate_greater_than_zero(value: float, key: str):
-    if value <= 0:
-        raise ValueError(f"Value can't be lower than zero.")
+def validate_greater_than(value: float, key: str, min_value: float):
+    if value < min_value:
+        raise ValueError(f"Value can't be lower than {min_value}.")
 
 
 def validate_lenght(value: object, max_len: int, key: str):
